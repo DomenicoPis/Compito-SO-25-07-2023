@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <pthread.h>
 #include "procedure.h"
 
 #define QUANTITA_INIZIALE 500
@@ -48,14 +48,14 @@ int main() {
             
         /* TBD: Creare i thread azionisti, passando a ognuno uno degli oggetti monitor */
 
-    err = pthread_create(&azionisti[i], NULL, azionista, (void *)m);
+    err = pthread_create(&azionisti[i], NULL, azionista, (void *)m[i]);
 
     if(err != 0){
-        perror("errore create aggiornatore");
+        perror("errore create azionista");
         exit(1);
     }
 
-
+ }
     /* TBD: Attendere la terminazione del thread aggiornatore */
 
     pthread_join(id_aggiornatore, NULL);
@@ -69,8 +69,8 @@ int main() {
         free(m[i]);
 
     }
+   
 
-    }
     return 0;
 }
 
