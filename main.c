@@ -32,12 +32,12 @@ int main() {
 
     /* TBD: Creare il thread aggiornatore, passargli il vettore di oggetti monitor */
 
-    pthread_t aggiornatore;
+    pthread_t id_aggiornatore;
     pthread_t azionisti[3];
 
     int err;
 
-    err = pthread_create(&aggiornatore, NULL, aggiornatore, (void *)m);
+    err = pthread_create(&id_aggiornatore, NULL, aggiornatore, (void *)m);
 
     if(err != 0){
         perror("errore create aggiornatore");
@@ -58,7 +58,7 @@ int main() {
 
     /* TBD: Attendere la terminazione del thread aggiornatore */
 
-    pthread_join(aggiornatore, NULL);
+    pthread_join(id_aggiornatore, NULL);
 
     for(int i = 0; i<3; i++) {
 
