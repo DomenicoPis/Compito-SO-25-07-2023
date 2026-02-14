@@ -53,7 +53,7 @@ void vendita(MonitorPortafoglio * m, int quantita, int prezzo) {
 
     while(prezzo > m->valore || m->quantita < quantita){
 
-        phtread_cond_wait(&m->vendita, &m->mutex);
+        pthread_cond_wait(&m->vendita, &m->mutex);
 
     }
 
